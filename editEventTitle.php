@@ -6,7 +6,7 @@ if (isset($_POST['delete']) && isset($_POST['id'])){
 	
 	$id = $_POST['id'];
 	
-	$sql = "DELETE FROM events WHERE id = $id";
+	$sql = "update events set status = 1 WHERE id = $id and user_id = '".$_SESSION['u_id']."'";
 	mysqli_select_db($database_dbconfig, $dbconfig);
 	$Result1 = mysqli_query($dbconfig, $sql) or die(mysqli_error());
 	/* $query = $bdd->prepare( $sql );
@@ -32,6 +32,9 @@ else if (isset($_POST['title']) && isset($_POST['color']) && isset($_POST['id'])
 	$color 		= $_POST['color'];
 	$attendees	= $_POST['attendees'];
 	$mattendees	= $_POST['mattendees'];
+	$location	= $_POST['location'];
+	$foc_person	= $_POST['foc_person'];
+	$teap		= $_POST['tea'];
 	
 //exit;	
 	$time_from			= $start_date.$start_time;
@@ -42,19 +45,22 @@ else if (isset($_POST['title']) && isset($_POST['color']) && isset($_POST['id'])
 	
 	if(($attendees=="") && ($mattendees<>""))
 	{
-	$sql = "UPDATE events SET  title = '$title', color = '$color' , start = '$starts' , end = '$ends' , attendees = '$mattendees' WHERE id = $id ";
+	$sql = "UPDATE events SET  title = '$title', color = '$color' , start = '$starts' , end = '$ends' , attendees = '$mattendees' ,
+	location = '$location' , foc_person = '$foc_person'	WHERE id = $id and user_id = '".$_SESSION['u_id']."'";
 	mysqli_select_db($database_dbconfig, $dbconfig);
 	$Result1 = mysqli_query($dbconfig, $sql) or die(mysqli_error());
 	}
 	else if($attendees<>"")
 	{
-	$sql = "UPDATE events SET  title = '$title', color = '$color' , start = '$starts' , end = '$ends' , attendees = '$attendees' WHERE id = $id ";
+	$sql = "UPDATE events SET  title = '$title', color = '$color' , start = '$starts' , end = '$ends' , attendees = '$attendees',
+	location = '$location' , foc_person = '$foc_person'	WHERE id = $id and user_id = '".$_SESSION['u_id']."'";
 	mysqli_select_db($database_dbconfig, $dbconfig);
 	$Result1 = mysqli_query($dbconfig, $sql) or die(mysqli_error());	
 	}
 	else
 	{
-	$sql = "UPDATE events SET  title = '$title', color = '$color' , start = '$starts' , end = '$ends' WHERE id = $id ";
+	$sql = "UPDATE events SET  title = '$title', color = '$color' , start = '$starts' , end = '$ends' ,
+	location = '$location' , foc_person = '$foc_person'	WHERE id = $id and user_id = '".$_SESSION['u_id']."'";
 	mysqli_select_db($database_dbconfig, $dbconfig);
 	$Result1 = mysqli_query($dbconfig, $sql) or die(mysqli_error());	
 	}

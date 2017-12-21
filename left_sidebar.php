@@ -36,6 +36,12 @@
 
 <li> <a href="calendar.php" class="waves-effect"><i data-icon="A" class="linea-icon linea-elaborate fa-fw"></i> <span class="hide-menu">Calendar</span></a></li>
 
+ <li> <a href="#" class="waves-effect"><i data-icon="&#xe008;" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Reports<span class="fa arrow"></span><span class="label label-rouded label-purple pull-right">30</span></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="daily_rpt.php">Daily Report</a></li>
+                        </ul>
+                    </li>
+                   
                    <li><a href="logout.php" class="waves-effect"><i class="icon-logout fa-fw"></i> <span class="hide-menu">Log out</span></a></li>
                     <li class="nav-small-cap">--- Support</li>
                     

@@ -13,7 +13,7 @@ include("functions.php");
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
-    <title>Calendar Events </title>
+    <title>Calendar COMTS </title>
 	
     <?php include("css.php"); ?>
 
@@ -52,7 +52,7 @@ include("functions.php");
                                 <div class="col-lg-3 col-sm-6 row-in-br">
                                     <div class="col-in row">
                                         <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E" class="linea-icon linea-basic"></i>
-                                            <h5 class="text-muted vb">UPCOMING EVENTS</h5>
+                                            <h5 class="text-muted vb">UPCOMING COMTS</h5>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <h3 class="counter text-right m-t-15 text-danger">5</h3>
@@ -67,7 +67,7 @@ include("functions.php");
                                 <div class="col-lg-3 col-sm-6 row-in-br  b-r-none">
                                     <div class="col-in row">
                                         <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic" data-icon="&#xe01b;"></i>
-                                            <h5 class="text-muted vb">TODAY EVENTS</h5>
+                                            <h5 class="text-muted vb">TODAY COMTS</h5>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <h3 class="counter text-right m-t-15 text-megna">5</h3>
@@ -82,7 +82,7 @@ include("functions.php");
                                 <div class="col-lg-3 col-sm-6 row-in-br">
                                     <div class="col-in row">
                                         <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic" data-icon="&#xe00b;"></i>
-                                            <h5 class="text-muted vb">PAST EVENTS</h5>
+                                            <h5 class="text-muted vb">PAST COMTS</h5>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <h3 class="counter text-right m-t-15 text-primary">9</h3>
@@ -97,7 +97,7 @@ include("functions.php");
                                 <div class="col-lg-3 col-sm-6  b-0">
                                     <div class="col-in row">
                                         <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic" data-icon="&#xe016;"></i>
-                                            <h5 class="text-muted vb">All EVENTS</h5>
+                                            <h5 class="text-muted vb">All COMTS</h5>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <h3 class="counter text-right m-t-15 text-success">20</h3>
@@ -118,7 +118,7 @@ include("functions.php");
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                         <div class="white-box">
-                            <h3 class="box-title">Yearly EVENTS</h3>
+                            <h3 class="box-title">Yearly COMTS</h3>
                             <ul class="list-inline text-right">
                                 <li>
                                     <h5><i class="fa fa-circle m-r-5" style="color: #00bfc7;"></i>USER 1</h5>

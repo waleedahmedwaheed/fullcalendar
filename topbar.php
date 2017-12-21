@@ -79,7 +79,7 @@
                     <!-- /.dropdown -->
                 </ul>
                 <div class="top-left-part">
-				<a class="logo" href="index.php"><b>Events </b> 
+				<a class="logo" href="index.php"><b>COMTS </b> 
 				 </a>
 				</div>
             </div>

@@ -3,6 +3,9 @@ session_start();
 error_reporting(0);
 include("bdd.php");
 include("functions.php");
+
+//$datetime = new DateTime('now', 'Asia/Karachi');
+//$datetime_string = $datetime->format('c');
 					
 ?>
 <!DOCTYPE html>
@@ -14,7 +17,7 @@ include("functions.php");
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
-    <title> Calendar </title>
+    <title> COMTS - Calendar </title>
     
 	<?php include("css.php"); ?>
 	
@@ -96,7 +99,7 @@ include("functions.php");
                 <div class="row">
                     <div class="col-md-3">
                         <div class="white-box">
-                            <h3 class="box-title">Drag and drop your event</h3>
+                            <h3 class="box-title">Drag and drop your COMTS</h3>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
 								<div id="calendar-events" class="m-t-20">
@@ -136,7 +139,7 @@ include("functions.php");
                                    
                                     
                                     <a href="#" data-toggle="modal" data-target="#add-my-event" class="btn btn-lg m-t-40 btn-danger btn-block waves-effect waves-light">
-                                        <i class="ti-plus"></i> Add New Event
+                                        <i class="ti-plus"></i> Add New COMT
                                     </a>
                                 </div>
                             </div>
@@ -144,10 +147,12 @@ include("functions.php");
                     </div>
                     <div class="col-md-9">
                         <div class="white-box">
-                             <div id="calendar" class="col-centered">
-                        </div>
+							<div id="printablediv">
+                             <div id="calendar" class="col-centered"></div>
+							</div> 
                     </div>
                 </div>
+				<input type="button" value="Print" onclick="printDiv('printablediv');" />
                 <!-- /.row -->
                 
 				<!-- Modal Add Category -->
@@ -157,15 +162,15 @@ include("functions.php");
 						<form method="POST" action="add_drag_event.php">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><strong>Add Draggable Event</strong></h4>
+                                <h4 class="modal-title"><strong>Add Draggable COMT</strong></h4>
                             </div>
 						
                             <div class="modal-body">
 						    
                   <div class="form-group">
-					<label for="title" class="col-sm-2 control-label">Title</label>
+					<label for="title" class="col-sm-2 control-label">Subj</label>
 					<div class="col-sm-10">
-					  <input type="text" name="title" class="form-control" id="title" placeholder="Title">
+					  <input type="text" name="title" class="form-control" id="title" placeholder="Subj">
 					</div>
 				  </div>
 				  <div class="form-group">
@@ -185,13 +190,14 @@ include("functions.php");
 					</div>
 				  </div>
 				  
+				  
 							</div>
 							
                         
 						
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-white waves-effect" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success save-event waves-effect waves-light">Create event</button>
+                                <button type="submit" class="btn btn-success save-event waves-effect waves-light">Create COMT</button>
                             </div>
 							 </form>
                         </div>
@@ -205,20 +211,20 @@ include("functions.php");
 						<form method="POST" action="addEvent.php">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><strong>Add</strong> drag Event</h4>
+                                <h4 class="modal-title"><strong>Add</strong> COMT</h4>
                             </div>
                             <div class="modal-body">
                                 
                   <div class="row" style="margin-top: 7.5px;">
-					<label for="title" class="col-sm-3 control-label">Title</label>
+					<label for="title" class="col-sm-3 control-label">Subj</label>
 					<div class="col-sm-9">
-					  <input type="text" name="title" class="form-control" id="titled" placeholder="Title">
+					  <input type="text" name="title" class="form-control" id="titled" placeholder="Subj" required>
 					</div>
 				  </div>
 				  <div class="row" style="margin-top: 7.5px;">
 					<label for="color" class="col-sm-3 control-label">Color</label>
 					<div class="col-sm-9">
-					  <select name="color" class="form-control" id="colord">
+					  <select name="color" class="form-control" id="colord" required>
 						  <option value="">Choose</option>
 						  <option style="color:#0071c5;" value="#0071c5">&#9724; Dark blue</option>
 						  <option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquoise</option>
@@ -242,10 +248,35 @@ include("functions.php");
 				  <div class="row" style="margin-top: 7.5px;">
 					<label for="endd" class="col-sm-3 control-label">End date</label>
 					<div class="col-sm-5">
-					  <input type="date" name="end_date" id="end" class="form-control" required>
+					  <input type="date" name="end_date" id="endd" class="form-control" required>
 					</div>  
 					<div class="col-sm-4">  
 					  <input id="onselectExample2d" name="end_time" type="text" class="form-control ui-timepicker-input" placeholder="00:00" autocomplete="off" required>
+					</div>
+				  </div>
+				  
+				  <div class="row" style="margin-top: 7.5px;">
+					<label for="end" class="col-sm-3 control-label">Attendees</label>
+					<div class="col-sm-9">
+ 				<input type='text' id='example_emailBS3' name='attendees' class='form-control' value='' placeholder="Enter Attendees">
+					</div>  
+				  </div>
+				  <div class="row" style="margin-top: 7.5px;">
+					<label for="title" class="col-sm-3 control-label">Location</label>
+					<div class="col-sm-9">
+					  <input type="text" name="location" class="form-control" placeholder="Enter Location">
+					</div>
+				  </div>
+				  <div class="row" style="margin-top: 7.5px;">
+					<label for="title" class="col-sm-3 control-label">Focal Person</label>
+					<div class="col-sm-9">
+					  <input type="text" name="foc_person" class="form-control" placeholder="Enter Focal Person">
+					</div>
+				  </div>
+				  <div class="row" style="margin-top: 7.5px;">
+					<label for="title" class="col-sm-3 control-label">Tea</label>
+					<div class="col-sm-9">
+							<input type="checkbox" name="tea" value="1" class="form-control" style="width: 4%;height: 20px;" /> 
 					</div>
 				  </div>
 				  
@@ -267,20 +298,20 @@ include("functions.php");
 						<form method="POST" action="addEvent.php">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><strong>Add</strong> an Event</h4>
+                                <h4 class="modal-title"><strong>Add</strong> COMT</h4>
                             </div>
                             <div class="modal-body">
                                 
                   <div class="row" style="margin-top: 7.5px;">
-					<label for="title" class="col-sm-3 control-label">Title</label>
+					<label for="title" class="col-sm-3 control-label">Subj</label>
 					<div class="col-sm-9">
-					  <input type="text" name="title" class="form-control" id="title" placeholder="Title">
+					  <input type="text" name="title" class="form-control" id="title" placeholder="Enter Subj" required>
 					</div>
 				  </div>
 				  <div class="row" style="margin-top: 7.5px;">
 					<label for="color" class="col-sm-3 control-label">Color</label>
 					<div class="col-sm-9">
-					  <select name="color" class="form-control" id="color">
+					  <select name="color" class="form-control" id="color" required>
 						  <option value="">Choose</option>
 						  <option style="color:#0071c5;" value="#0071c5">&#9724; Dark blue</option>
 						  <option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquoise</option>
@@ -313,11 +344,29 @@ include("functions.php");
 				  <div class="row" style="margin-top: 7.5px;">
 					<label for="end" class="col-sm-3 control-label">Attendees</label>
 					<div class="col-sm-9">
- 				<input type='text' id='example_emailBS' name='attendees' class='form-control' value=''>
+ 				<input type='text' id='example_emailBS' name='attendees' class='form-control' value='' placeholder="Enter Attendees">
 					</div>  
 				  </div>
+				  <div class="row" style="margin-top: 7.5px;">
+					<label for="title" class="col-sm-3 control-label">Location</label>
+					<div class="col-sm-9">
+					  <input type="text" name="location" class="form-control" placeholder="Enter Location">
+					</div>
+				  </div>
+				  <div class="row" style="margin-top: 7.5px;">
+					<label for="title" class="col-sm-3 control-label">Focal Person</label>
+					<div class="col-sm-9">
+					  <input type="text" name="foc_person" class="form-control" placeholder="Enter Focal Person">
+					</div>
+				  </div>
+				  <div class="row" style="margin-top: 7.5px;">
+					<label for="title" class="col-sm-3 control-label">Tea</label>
+					<div class="col-sm-9">
+							<input type="checkbox" name="tea" value="1" class="form-control" style="width: 4%;height: 20px;" /> 
+					</div>
+				  </div>
 				  
-                            </div>
+                    </div>
                             <div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 								<button type="submit" class="btn btn-success">Save changes</button>
@@ -337,21 +386,21 @@ include("functions.php");
 			<form method="POST" action="editEventTitle.php">
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Edit Event</h4>
+				<h4 class="modal-title" id="myModalLabel">Edit COMT</h4>
 			  </div>
 			  <div class="modal-body">
 				
 				  <div class="row" style="margin-top: 7.5px;">
-					<label for="title" class="col-sm-3 control-label">Title</label>
+					<label for="title" class="col-sm-3 control-label">Subj</label>
 					<div class="col-sm-9">
-					  <input type="text" name="title" class="form-control" id="title" placeholder="Title">
+					  <input type="text" name="title" class="form-control" id="title" placeholder="Subj" required>
 					</div>
 				  </div>
 				  
 				  <div class="row" style="margin-top: 7.5px;">
 					<label for="color" class="col-sm-3 control-label">Color</label>
 					<div class="col-sm-9">
-					  <select name="color" class="form-control" id="color">
+					  <select name="color" class="form-control" id="color" required>
 						  <option value="">Choose</option>
 						  <option style="color:#0071c5;" value="#0071c5">&#9724; Dark blue</option>
 						  <option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquoise</option>
@@ -387,20 +436,36 @@ include("functions.php");
 					<label for="end" class="col-sm-3 control-label">Attendees</label>
 					<div class="col-sm-9">
  				<input type='text' id='example_emailBS2' name='attendees' class='form-control' value=''>
- 				<input type='text' id='mattendees' name='mattendees' class='form-control' value=''>
+ 				<input type='hidden' id='mattendees' name='mattendees' class='form-control' value=''>
 					</div>  
 				  </div>
 				  
-				    <div class="row"> 
-						<div class="col-sm-offset-2 col-sm-10">
-						  <div class="checkbox">
-							<label class="text-danger"><input type="checkbox"  name="delete" /> Delete event</label>
-						  </div>
-						</div>
+				  <div class="row" style="margin-top: 7.5px;">
+					<label for="title" class="col-sm-3 control-label">Location</label>
+					<div class="col-sm-9">
+					  <input type="text" name="location" id="location" class="form-control" placeholder="Enter Location">
 					</div>
+				  </div>
+				  <div class="row" style="margin-top: 7.5px;">
+					<label for="title" class="col-sm-3 control-label">Focal Person</label>
+					<div class="col-sm-9">
+					  <input type="text" name="foc_person" id="foc_person" class="form-control" placeholder="Enter Focal Person">
+					</div>
+				  </div>
+				  <div class="row" style="margin-top: 7.5px;">
+					<label for="title" class="col-sm-3 control-label">Tea</label>
+					<div class="col-sm-9">
+							<input type="checkbox" name="tea" id="tea" value="1" class="form-control" style="width: 4%;height: 20px;" /> 
+					</div>
+				  </div>
 				  
-				  <input type="hidden" name="id" class="form-control" id="id">
+				    <input type="hidden" name="id" class="form-control" id="id">
 				
+				<div class="row"> 
+						<div class="col-sm-offset-12 col-sm-12">
+						   <label class="text-danger" style="float: right;"><input type="checkbox"  name="delete" /> DELETE COMT</label>
+						</div>
+				</div>
 				
 			  </div>
 			  <div class="modal-footer">
@@ -426,21 +491,18 @@ include("functions.php");
 	</div>
     <!-- /#wrapper -->
 
-<script src='jquery/lib/moment.min.js'></script>
-<script src='jquery/lib/jquery.min.js'></script>
-<script src='jquery/fullcalendar.min.js'></script>
+<script src='fullcalendar--/lib/moment.min.js'></script>
+<script src='fullcalendar--/lib/jquery.min.js'></script>
+<script src='fullcalendar--/fullcalendar.min.js'></script>
+
 	<?php include("scripts.php"); ?>
 	 <!-- jQuery Version 1.11.1 -->
 <script type="text/javascript" src="js/jquery.timepicker.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css" />
- 	
-	<script type="text/javascript" src="jquery/multiple-emails.js"></script>
-	<link type="text/css" rel="stylesheet" href="jquery/multiple-emails.css" />
-	
-	
-<button onclick="myFunction()">Try it</button>
+<link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css" />
 
-<p id="demo"></p>
+<script type="text/javascript" src="jquery/multiple-emails.js"></script>
+<link type="text/css" rel="stylesheet" href="jquery/multiple-emails.css" />
+	
 
 	<script type="text/javascript">
 	
@@ -466,6 +528,18 @@ include("functions.php");
 			$('#current_emailsBS2').text($('#example_emailBS2').val());
 			$('#example_emailBS2').change( function(){
 				$('#current_emailsBS2').text($(this).val());
+			});
+		});
+		
+		$(function() {
+			//To render the input device to multiple email input using BootStrap icon
+			$('#example_emailBS3').multiple_emails({position: "bottom"});
+			//OR $('#example_emailBS').multiple_emails("Bootstrap");
+			
+			//Shows the value of the input device, which is in JSON format
+			$('#current_emailsBS3').text($('#example_emailBS3').val());
+			$('#example_emailBS3').change( function(){
+				$('#current_emailsBS3').text($(this).val());
 			});
 		});
 		
@@ -513,29 +587,56 @@ include("functions.php");
 
 	$(document).ready(function() {
 		$('#calendar').fullCalendar({
+			
+		/*dayClick: function(date) {
+				alert('dayClick', date.format());
+			},*/
 			header: {
-				left: 'prev,next listMonth',
+				left: 'prev,next today',
 				center: 'title',
-				right: 'year,month,basicWeek,basicDay,today'
+				right: 'year,month,agendaWeek,listWeek,agendaDay,listDay'
 			},
 			//defaultView: 'today',
 			//defaultDate: '2016-01-12',
 			// defaultView: 'month',
+			defaultDate: moment(),
 			navLinks: true,
 			editable: true,
 			droppable: true, 
 			eventLimit: true, // allow "more" link when too many events
 			selectable: true,
 			selectHelper: true,
+			forceEventDuration: true,
+			displayEventTime: true,
+			defaultTimedEventDuration: '00:30:00',
+			minTime: "08:00:00",
+			maxTime: "23:00:00",
+			slotDuration: "00:30:00",
+			timeFormat: 'H:mm' ,
+			firstDay: 1,
+			
+			/*dayClick: function(date, allDay, event, view) {
+				var moment = $('#calendar').fullCalendar('getDate');
+				alert(date); 
+				event.start = moment("06/28/2016 10:00 AM");
+			//alert(moment.format());
+			alert(event.start);
+        if (allDay) {
+          // Clicked on the entire day
+          //alert(date.toDate());
+		  
+      	}
+    	},*/
 			select: function(start, end) {
 				
 				$('#add-new-event #start').val(moment(start).format('YYYY-MM-DD'));
 				//$('#add-new-event #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
-				$('#add-new-event #end').val(moment(end).format('YYYY-MM-DD'));
+				$('#add-new-event #end').val(moment(start).format('YYYY-MM-DD'));
 				$(".multiple_emails-ul").empty();
 				$('#add-new-event').modal('show');
 			},
 			eventRender: function(event, element) {
+				//console.log(event.start.format('HH:mm:ss'));
 				element.bind('dblclick', function() {
 					//alert(event.attendees);
 					//var obj = JSON.parse(event.attendees);
@@ -609,14 +710,6 @@ txt2 += '<li class="multiple_emails-email" id="li'+j+'"><a href="#" class="multi
 						  
 						}
 						
-						//var myFunc;
-						//if (num === 0) {
-						   
-						  
-								 
-						   
-						//}
-						
 							if(txt != "")
 							{
 								$(".multiple_emails-ul").append(txt).removeClass("hidden");
@@ -632,6 +725,14 @@ txt2 += '<li class="multiple_emails-email" id="li'+j+'"><a href="#" class="multi
 					$('#ModalEdit #id').val(event.id);
 					$('#ModalEdit #title').val(event.title);
 					$('#ModalEdit #color').val(event.color);
+					$('#ModalEdit #location').val(event.location);
+					$('#ModalEdit #foc_person').val(event.foc_person);
+					//alert(event.tea);
+					if(event.tea==1)
+					{
+					document.getElementById("tea").checked = true;
+					$('#ModalEdit #tea').val(event.tea);
+					}
 					$('#ModalEdit #start').val(event.start.format('YYYY-MM-DD'));
 					$('#ModalEdit #end').val(event.end.format('YYYY-MM-DD'));
 					$('#ModalEdit #onselectExample3').val(event.start.format('HH:mm:ss'));
@@ -657,6 +758,7 @@ txt2 += '<li class="multiple_emails-email" id="li'+j+'"><a href="#" class="multi
 				$('#add-drag-event #titled').val(title_);
 				$('#add-drag-event #colord').val(color_);
 				$('#add-drag-event #startd').val(start_);
+				$('#add-drag-event #endd').val(start_);
 				$('#add-drag-event').modal('show');
 				//$('#add-drag-event #start').val(event.start.format('YYYY-MM-DD'));
 /* 
@@ -682,7 +784,7 @@ txt2 += '<li class="multiple_emails-email" id="li'+j+'"><a href="#" class="multi
 			},
 			events: [
 			<?php 
-			$sql = "SELECT id, title, start, end, color, attendees FROM events where status = 0 and user_id = '".$_SESSION['u_id']."'";
+			$sql = "SELECT * FROM events where status = 0 and user_id = '".$_SESSION['u_id']."'";
 			mysqli_select_db($database_dbconfig, $dbconfig);
 			$req = mysqli_query($dbconfig,$sql);
 			while($event = mysqli_fetch_assoc($req)){
@@ -708,9 +810,13 @@ txt2 += '<li class="multiple_emails-email" id="li'+j+'"><a href="#" class="multi
 					end: '<?php echo $end; ?>',
 					color: '<?php echo $event['color']; ?>',
 				attendees: '<?php echo $event['attendees']; ?>',
+				location: '<?php echo $event['location']; ?>',
+				foc_person: '<?php echo $event['foc_person']; ?>',
+				tea: '<?php echo $event['tea']; ?>',
 				},
 			<?php } ?>
-			]		
+			],
+			timezone: 'Asia/Karachi'	
 		});
 		
 		function edit(event){
@@ -745,6 +851,8 @@ txt2 += '<li class="multiple_emails-email" id="li'+j+'"><a href="#" class="multi
 	});
 
 </script>
+
+
 
 </body>
 </html>

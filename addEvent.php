@@ -19,6 +19,18 @@ if (isset($_POST['title']) && isset($_POST['start_date']) && isset($_POST['end_d
 	$end_date   = $_POST['end_date'];
 	$end_time   = $_POST['end_time'];
 	$color 		= $_POST['color'];
+	$location	= $_POST['location'];
+	$foc_person	= $_POST['foc_person'];
+	$teap		= $_POST['tea'];
+	
+	if($teap=="")
+	{
+		$tea = 0;
+	}
+	else
+	{
+		$tea = $teap;
+	}
 		
 	$time_from			= $start_date.$start_time;
 	$time_to			= $end_date.$end_time;
@@ -26,7 +38,7 @@ if (isset($_POST['title']) && isset($_POST['start_date']) && isset($_POST['end_d
 	$starts			= date("Y-m-d H:i:s",strtotime($time_from));	
 	$ends			= date("Y-m-d H:i:s",strtotime($time_to));	
 	
-	$sqls = "select * from events where (start between '$starts' and '$ends' or end between '$starts' and '$ends')";
+	$sqls = "select * from events where (start between '$starts' and '$ends' or end between '$starts' and '$ends') and status = 0";
 	mysqli_select_db($database_dbconfig, $dbconfig);
 	$Results = mysqli_query($dbconfig, $sqls) or die(mysqli_error());
 	$row	= mysqli_num_rows($Results);
@@ -38,8 +50,8 @@ if (isset($_POST['title']) && isset($_POST['start_date']) && isset($_POST['end_d
 	}
 	else
 	{
-		$sql = "INSERT INTO events(title, start, end, color, user_id, attendees) 
-		values ('$title', '$starts', '$ends', '$color' , '".$_SESSION['u_id']."' , '$attendees')";
+		echo $sql = "INSERT INTO events(title, start, end, color, user_id, attendees, location, foc_person, tea) 
+		values ('$title', '$starts', '$ends', '$color' , '".$_SESSION['u_id']."' , '$attendees' , '$location' , '$foc_person' , '$tea')";
 		mysqli_select_db($database_dbconfig, $dbconfig);
 		$Result1 = mysqli_query($dbconfig, $sql) or die(mysqli_error());
 		header('Location: '.$_SERVER['HTTP_REFERER']);	

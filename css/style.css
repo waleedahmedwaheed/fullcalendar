@@ -4833,7 +4833,7 @@ table.focus-on tbody tr.focused th {
 
 .fc-unthemed .fc-today {
     border: 1px solid #fb9678;
-    background: #fcf8e3!important
+    background: #91ea93!important
 }
 
 .fc-cell-overlay,
@@ -4846,8 +4846,8 @@ table.focus-on tbody tr.focused th {
     border: none;
     cursor: move;
     font-size: 13px;
-    margin: 1px -1px 0;
-    padding: 5px;
+    /*margin: 1px -1px 0;*/
+    padding: 4px;
     text-align: center;
     background: #03a9f3
 }

@@ -8,8 +8,12 @@
     <link href="plugins/bower_components/calendar/dist/fullcalendar.css" rel="stylesheet" />
     <!-- animation CSS -->
 	
-	<link href='jquery/fullcalendar.css' rel='stylesheet' />
-	<link href='jquery/fullcalendar.print.css' rel='stylesheet' media='print' />
+	<link href="plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
+    <link href="plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+	
+	<link href='fullcalendar/fullcalendar.css' rel='stylesheet' />
+	<link href='fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
 
     <link href="css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->

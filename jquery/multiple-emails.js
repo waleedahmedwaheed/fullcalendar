@@ -40,7 +40,7 @@
 				});
 			}
 			
-			var $input = $('<input type="text" class="multiple_emails-input text-left" />').on('keyup', function(e) { // input
+			var $input = $('<input type="text" class="multiple_emails-input text-left" placeholder="Enter Attendees" />').on('keyup', function(e) { // input
 				$(this).removeClass('multiple_emails-error');
 				var input_length = $(this).val().length;
 				
@@ -55,7 +55,8 @@
 				//if(event.which == 8 && input_length == 0) { $list.find('li').last().remove(); } //Removes last item on backspace with no input
 				
 				// Supported key press is tab, enter, space or comma, there is no support for semi-colon since the keyCode differs in various browsers
-				if(keynum == 9 || keynum == 32 || keynum == 188) { 
+				//if(keynum == 9 || keynum == 32 || keynum == 188) { 
+				if(keynum == 9 || keynum == 188) { 
 					display_email($(this), settings.checkDupEmail);
 				}
 				else if (keynum == 13) {
@@ -94,7 +95,8 @@
 				//Remove the double quote
 				arr = arr.replace(/"/g,"");
 				//Split the string into an array, with the space, comma, and semi-colon as the separator
-				arr = arr.split(/[\s,;]+/);
+				//arr = arr.split(/[\s,;]+/);
+				arr = arr.split(/[\,;]+/);
 				
 				var errorEmails = new Array(); //New array to contain the errors
 				
@@ -105,11 +107,16 @@
 					//Check if the email is already added, only if dupEmailCheck is set to true
 					if ( dupEmailCheck === true && $orig.val().indexOf(arr[i]) != -1 ) {
 				        if (arr[i] && arr[i].length > 0) {
-							new function () {
+							/*new function () {
 								var existingElement = $list.find('.email_name[data-email=' + arr[i].toLowerCase().replace('.', '\\.').replace('@', '\\@') + ']');
 								existingElement.css('font-weight', 'bold');
 								setTimeout(function() { existingElement.css('font-weight', ''); }, 1500);
-							}(); // Use a IIFE function to create a new scope so existingElement won't be overriden
+							}(); // Use a IIFE function to create a new scope so existingElement won't be overriden*/
+							$list.append($('<li class="multiple_emails-email"><span class="email_name" data-email="' + arr[i].toLowerCase() + '">' + arr[i] + '</span></li>')
+							  .prepend($(deleteIconHTML)
+								   .click(function(e) { $(this).parent().remove(); refresh_emails(); e.preventDefault(); })
+							  )
+							);
 						}
 					}
 					else if (pattern.test(arr[i]) == true) {
